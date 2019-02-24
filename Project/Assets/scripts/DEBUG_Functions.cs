@@ -21,6 +21,7 @@ public class DEBUG_Functions : MonoBehaviour
     public LayerMask coinboxLayer;
     public Material[] renderMaterials;
     public PhysicMaterial[] physMaterials;
+    public Cubemap[] reflectionCubemaps;
 
 
     private float m_desiredLocalY;
@@ -35,7 +36,7 @@ public class DEBUG_Functions : MonoBehaviour
     void Start()
     {
         m_desiredLocalY = floorObject.localPosition.y;
-        m_desiredCoinScale = coinPrefab.transform.localScale.x;
+        m_desiredCoinScale = 1f;
         m_currentCoinScale = m_desiredCoinScale;
     }
 
@@ -133,6 +134,7 @@ public class DEBUG_Functions : MonoBehaviour
         m_currentMaterialIndex = ( m_currentMaterialIndex + 1 ) % renderMaterials.Length;
         Material rm = renderMaterials[ m_currentMaterialIndex ];
         PhysicMaterial pm = physMaterials[ m_currentMaterialIndex ];
+        RenderSettings.customReflection = reflectionCubemaps[ m_currentMaterialIndex ];
 
         var allRenderers = FindObjectsOfType<Collider>();
         var rList = new System.Collections.Generic.List<Collider>();
@@ -176,11 +178,13 @@ public class DEBUG_Functions : MonoBehaviour
 
             CoinMotion[] coins = Object.FindObjectsOfType<CoinMotion>();
             foreach ( CoinMotion c in coins ) {
-                c.transform.localScale = new Vector3( m_currentCoinScale, m_currentCoinScale, m_currentCoinScale );
-                //c.GetComponent<MeshCollider>().contactOffset = 0.001f * (m_currentCoinScale / 0.275f);
-                c.GetComponent<Rigidbody>().ResetCenterOfMass();
-                c.GetComponent<Rigidbody>().ResetInertiaTensor();
-                c.GetComponent<Rigidbody>().WakeUp();
+                c.transform.localScale = coinPrefab.transform.localScale * m_currentCoinScale;
+                c.GetComponent<MeshCollider>().contactOffset = 0.001f * m_currentCoinScale;
+                Rigidbody cBody = c.GetComponent<Rigidbody>();
+                cBody.mass = coinPrefab.GetComponent<Rigidbody>().mass * Mathf.Pow(1f / m_currentCoinScale, 3f);
+                cBody.ResetCenterOfMass();
+                cBody.ResetInertiaTensor();
+                cBody.WakeUp();
             }
 
         }

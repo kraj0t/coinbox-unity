@@ -24,8 +24,6 @@ public class CoinImpactAudio : MonoBehaviour
 
 
     public CoinAudioDefinition[] impactAudioDefinitions;
-    public CoinAudioDefinition[] slideAudioDefinitions;
-    public CoinAudioDefinition[] rollAudioDefinitions;
 
     public float globalImpactVelocityMultiplier = 0.5f;
     public float globalMinImpactVelocity = 0.05f;
@@ -134,11 +132,12 @@ public class CoinImpactAudio : MonoBehaviour
             rollVolume *= 1f - slideRatio;
 
             // Also, depending on how fast the collision is being, we adjust the volume of the audios.
-            float slideVelocity = collision.relativeVelocity.magnitude * globalSlideVelocityMultiplier;
-            float rollVelocity = collision.relativeVelocity.magnitude * globalRollVelocityMultiplier;
+            float slideVelocity = collision.relativeVelocity.magnitude * globalSlideVelocityMultiplier;            
             if ( slideVelocity < globalMinSlideVelocity ) {
                 slideVelocity = 0f;
             }
+            float rollVelocity = collision.relativeVelocity.magnitude * globalRollVelocityMultiplier;
+            //float rollVelocity = (transform.rotation * GetComponent<Rigidbody>().angularVelocity).z * globalRollVelocityMultiplier;
             if ( rollVelocity < globalMinRollVelocity ) {
                 rollVelocity = 0f;
             }
