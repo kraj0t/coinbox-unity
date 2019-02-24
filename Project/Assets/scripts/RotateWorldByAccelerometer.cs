@@ -69,7 +69,8 @@ public class RotateWorldByAccelerometer : MonoBehaviour
         float lerpT = (smoothSpeed - (0.5f * smoothSpeed * Mathf.Pow(n.y, 2f))) * Time.deltaTime;
         transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.LookRotation( fixedNormalizedDir ), lerpT);
         //Physics.gravity = Vector3.Lerp(Physics.gravity, fixedNormalizedDir * m_startGravityMagnitude, lerpT );
-        Physics.gravity = Vector3.Lerp(Physics.gravity, fixedNormalizedDir * m_startGravityMagnitude, lerpT * 8f);
+        //Physics.gravity = fixedNormalizedDir * m_startGravityMagnitude;
+        Physics.gravity = fixedNormalizedDir * m_startGravityMagnitude * a.magnitude;
 
         /*
         //transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.LookRotation( n ), 8f * Time.deltaTime);
