@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b69d08169ed194c4a89498e6d298a559
-timeCreated: 1454430920
+timeCreated: 1454579358
 licenseType: Pro
 MonoImporter:
   serializedVersion: 2
@@ -8,7 +8,7 @@ MonoImporter:
   - loQueVieneSiendoElDuro: {fileID: 5447940, guid: 30bf65e9eb8a3a444b7c9406f39178fa,
       type: 2}
   executionOrder: 0
-  icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  icon: {instanceID: 0}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
