@@ -41,7 +41,7 @@ public class CoinMotion : MonoBehaviour
         }
         m_wasCustomInertiaTensor = applyCustomInertiaTensor;
 
-        m_body.solverIterationCount = solverIterationCount;
+        m_body.solverIterations = solverIterationCount;
     }
 
 }
