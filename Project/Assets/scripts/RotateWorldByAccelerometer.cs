@@ -86,10 +86,12 @@ public class RotateWorldByAccelerometer : MonoBehaviour
     }
 
 
+    /*
     void OnGUI()
     {
         GUI.color = Color.red;
         GUI.Label( new Rect( 5f, 20f, 300f, 30f ), "Input.acceleration: " + Input.acceleration.ToString() );
         GUI.Label( new Rect( 5f, 35f, 300f, 30f ), "Input.gyro.attitude: " + Input.gyro.attitude.eulerAngles.ToString() );
     }
+    */
 }

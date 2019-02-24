@@ -11,7 +11,6 @@ public class CoinImpactDeviceVibrator : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         float vibrationTime = vibrateDurationFactor * collision.relativeVelocity.magnitude;
-        Debug.Log("vibrationTime: " + vibrationTime.ToString("F2"));
         if (vibrationTime > relativeVelocityImpactThreshold)
         {
             float vibrationSeconds = Mathf.Min(maxVibrateTime, vibrationTime);
